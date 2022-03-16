@@ -41,6 +41,7 @@ public class App {
         System.out.println("| 3.    HISTORY OF DRAGONS       |");
         System.out.println("| 0.    Exit GAME                |");
         System.out.println("|________________________________|");
+        System.out.println("Enter Selection 0 to 3");
     }
 
     public void executeMenu() {
@@ -48,15 +49,16 @@ public class App {
         menuSelection();
 
         while (!exit) {
-            int selection = userMenuSelection();
-            whatToDoWithSelectionChoice(selection);
+            Object selection = userMenuSelection(userInput.next());
+            whatToDoWithSelectionChoice((Integer) selection);
 
         }
 
     }
 
-    private int userMenuSelection() {
-        int selection = -1;
+    public Object userMenuSelection(String selection) {
+        int intselection = -1;
+        //selection = Integer.parseInt(userInput.nextLine());
 
         /**
          * A do/while condition will tell the user to Enter Menu Selection 0 to 2
@@ -68,18 +70,18 @@ public class App {
          * less than 0 or grater that 2
          * @return selection
          */
-        do {
-            System.out.println("Enter Selection 0 to 3");
+        //do {
             try {
-                selection = Integer.parseInt(userInput.nextLine());
+                intselection = Integer.parseInt(selection);
+
             } catch (NumberFormatException e) {
-                System.out.println("Invalid Selection, NUMBERS! only");
+                return ("Invalid Selection, NUMBERS! only");
             }
-            if (selection < 0 || selection > 3) {
-                System.out.println("Invalid Selection, try again");
+            if (intselection < 0 || intselection > 3) {
+                return ("Invalid Selection, try again");
             }
-        } while (selection < 0 || selection > 3);
-        return selection;
+       // } while (selection < 0 || selection > 3);
+        return intselection;
 
     }
 
@@ -91,7 +93,10 @@ public class App {
          */
             switch (selection) {
                 case 0:
-                    System.out.println("Thank you for using The Dragons Cave Application Game");
+
+                    System.out.println(" _______________________________________________________ ");
+                    System.out.println(  "Thank you for using The Dragons Cave Application Game"  );
+                    System.out.println(" _______________________________________________________ ");
                     System.exit(0);
                     break;
 
